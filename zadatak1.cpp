@@ -30,7 +30,7 @@ int main() {
     to_loop = false;
     choice = get_choice();
 
-      if (choice == 1) {
+    if (choice == 1) {
       temperature_menu();
     } else 
     
