@@ -151,6 +151,7 @@ namespace MenuManager {
         std::cout<<k<<" kelvin is "<<kelv_fahr(k)<<" degrees Fahrenheits.\n";
       } else {
         std::cout<<"Invalid choice.\n";
+        call_menu(x);
       }
         
     } else
@@ -181,23 +182,24 @@ int main() {
 
   bool to_loop;
   unsigned short choice;
-
-  main_menu();
   do {
-    to_loop = false;
-    choice = get_choice();
+    main_menu();
+    do {
+      to_loop = false;
+      choice = get_choice();
 
-    if (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5) { 
-      std::cout<<"Wrong choice.\n";
-      to_loop = true;
-    }
+      if (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5) { 
+        std::cout<<"Wrong choice.\n";
+        to_loop = true;
+      }
 
-  } while (to_loop);
+    } while (to_loop);
 
-  call_menu(choice);
+    call_menu(choice);
   
+    std::cout<<"Calculate again?\n\t1. Yes\n\t2. No\nInput: ";
+    std::cin>>choice;
+  } while (choice == 1);
 
-
-  std::cout<<"End of program!\n";
   return 0;
 }
