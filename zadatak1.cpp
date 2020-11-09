@@ -125,8 +125,34 @@ namespace MenuManager {
           }
         } while (k < 0);
         std::cout<<k<<" kelvin is "<<kelv_cels(k)<<" degrees Celsius.\n";
-      } 
+      } else 
      
+      if (choice == 5) {
+        float f;
+        do{
+          std::cout<<"Enter the temperature in degrees Fahrenheits: ";
+          std::cin>>f; 
+          if (f < -459.67) {
+            std::cout<<"Too low (<-459.67).\n";
+          }
+        } while (f < -459.67);
+        std::cout<<f<<" degrees Fahrenheits is "<<fahr_kelv(f)<<" Kelvin.\n";
+      } else
+
+      if (choice == 6) {
+        float k;
+        do{
+          std::cout<<"Enter the temperature in kelvin: ";
+          std::cin>>k; 
+          if (k < 0) {
+            std::cout<<"Too low (<0).\n";
+          }
+        } while (k < 0);
+        std::cout<<k<<" kelvin is "<<kelv_fahr(k)<<" degrees Fahrenheits.\n";
+      } else {
+        std::cout<<"Invalid choice.\n";
+      }
+        
     } else
 
     if (x == 2) {
