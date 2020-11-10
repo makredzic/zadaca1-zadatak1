@@ -10,7 +10,7 @@ namespace Menu {
   }
 
   void speed_menu() {
-    std::cout<<"Not implemented yet.\n";
+    std::cout<<"Please choose the converter:\n\t1. Kilometers to Miles\n\t2. Miles to Kilometers\n";
   }
 
   void length_menu() {
@@ -26,16 +26,24 @@ namespace Menu {
   }
 
   int get_choice() {
+
     std::cout<<"Your choice: ";
     unsigned short x;
-    std::cin>>x;
+
+    if (!(std::cin>>x)) {
+      std::cout<<"Error: Invalid entry. Program closed.\n";
+      std::cin.clear();
+      //cin.clear() is not enough to prevent infinite loop on bad entry 
+      return 0;
+    }
+
     return x;
   }
 }
 
 
 //temperature converters
-namespace t_con {
+namespace converters {
   float cels_fahr(float cels) {
     double result = 1.8*cels + 32;
     return result;
@@ -63,13 +71,20 @@ namespace t_con {
     float result = (kelv-273.15)*1.8 + 32;
     return result;
   }
-}
 
+  float km_m(float km) {
+    return km/1.60934;
+  }
+
+  float m_km(float m) {
+    return m*1.60934;
+  }
+}
 
 namespace MenuManager {
   
   using namespace Menu;
-  using namespace t_con;
+  using namespace converters;
   
   void call_menu(unsigned short x) {
     
@@ -158,6 +173,38 @@ namespace MenuManager {
 
     if (x == 2) {
       speed_menu();
+
+      unsigned short choice = get_choice();
+      if (choice == 1) {
+        float km;
+        do {
+          std::cout<<"Enter an amount in kilometers: ";
+          std::cin>>km;
+          if (km <= 0) {
+            std::cout<<"Please enter a positive number.\n";
+          }
+        } while(km <= 0);
+        std::cout<<km<<" kilometers is "<<km_m(km)<<" miles.\n";
+      } else
+
+      if (choice == 2) {
+        
+        float m;
+        
+        do {
+          std::cout<<"Enter an amount in miles: ";
+          std::cin>>m;
+          if (m <= 0) std::cout<<"Please enter a positive number.\n";
+        } while(m<=0);
+        
+        std::cout<<m<<" miles is "<<m_km(m)<<" kilometers.\n";
+
+      } else {
+        std::cout<<"Invalid choice.\n";
+        call_menu(x);
+      }
+
+      
     } else 
 
     if (x == 3) {
