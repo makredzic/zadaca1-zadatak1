@@ -61,7 +61,7 @@ namespace t_con {
   }
 
   float kelv_fahr(float kelv) {
-    float result = (kelv-273.15)*1.8 + 32 + 273.15;
+    float result = (kelv-273.15)*1.8 + 32;
     return result;
   }
 }
@@ -198,7 +198,7 @@ int main() {
 
     call_menu(choice);
   
-    std::cout<<"Calculate again?\n\t1. Yes\n\t2. No\nInput: ";
+    std::cout<<"Use converter again?\n\t1. Yes\n\t2. No\nInput: ";
     std::cin>>choice;
   } while (choice == 1);
 
